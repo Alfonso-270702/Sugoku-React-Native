@@ -31,30 +31,43 @@ function Finish({ route, navigation }) {
   useEffect(() => {
     getMultiple();
   }, []);
+
   leaderBoard.sort((x, y) => +x[1] - +y[1]);
-  console.log(leaderBoard);
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={{ fontSize: 27, marginBottom: 10 }}>LeaderBoard</Text>
-      </View>
-      {leaderBoard.map((score, index) => (
-        <View style={{ flexDirection: "row", width: 150 }}>
-          <View style={{ width: 75, alignItems: "center" }}>
-            <Text style={{ fontSize: 16 }} key={index}>
-              {score[0]}
-            </Text>
-          </View>
-          <View style={{ width: 75, alignItems: "center" }}>
-            <Text style={{ fontSize: 16 }}>{score[1]}</Text>
+      <Text style={{ fontSize: 27, marginBottom: 10 }}>LeaderBoard</Text>
+      <View style={{ borderWidth: 1 }}>
+        <View style={{ borderBottomWidth: 1 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              width: 150,
+            }}
+          >
+            <View
+              style={{ width: 150, alignItems: "center", borderRightWidth: 1 }}
+            >
+              <Text>Name</Text>
+            </View>
+            <View style={{ width: 150, alignItems: "center" }}>
+              <Text>Duration</Text>
+            </View>
           </View>
         </View>
-      ))}
-
-      {/* <Text style={{ fontSize: 27, marginBottom: 20 }}>
-        Congrats {name}, You win the challange
-      </Text> */}
+        {leaderBoard.map((score, index) => (
+          <View key={index} style={{ flexDirection: "row", width: 300 }}>
+            <View
+              style={{ width: 150, alignItems: "center", borderRightWidth: 1 }}
+            >
+              <Text style={{ fontSize: 16 }}>{score[0]}</Text>
+            </View>
+            <View style={{ width: 150, alignItems: "center" }}>
+              <Text style={{ fontSize: 16 }}>{score[1]}</Text>
+            </View>
+          </View>
+        ))}
+      </View>
       <View style={{ width: 80, marginTop: 10 }}>
         <Button title="Home" onPress={() => navigation.navigate("Home")} />
       </View>
